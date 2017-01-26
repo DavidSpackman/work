@@ -1,0 +1,17 @@
+package passport;
+/*
+ * 
+ * This class works for 16X passport.
+ * 
+ */
+public class PassportUpdate_16X {
+
+	public static void main(String[] args) {
+		try{
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}
