@@ -1,0 +1,10 @@
+127.0.0.1 - - [27/Jan/2017:15:23:28 -0500] "GET / HTTP/1.1" 404 988
+0:0:0:0:0:0:0:1 - - [27/Jan/2017:15:24:06 -0500] "GET /UserManagement/rest/UserService/users HTTP/1.1" 500 3809
+127.0.0.1 - - [27/Jan/2017:15:25:37 -0500] "GET / HTTP/1.1" 404 988
+0:0:0:0:0:0:0:1 - - [27/Jan/2017:15:25:50 -0500] "GET /UserManagement/rest/UserService/users HTTP/1.1" 500 1076
+127.0.0.1 - - [27/Jan/2017:15:32:15 -0500] "GET / HTTP/1.1" 404 988
+0:0:0:0:0:0:0:1 - - [27/Jan/2017:15:32:21 -0500] "GET /UserManagement/rest/UserService/users HTTP/1.1" 500 1076
+127.0.0.1 - - [27/Jan/2017:16:08:33 -0500] "GET / HTTP/1.1" 404 988
+0:0:0:0:0:0:0:1 - - [27/Jan/2017:16:10:22 -0500] "GET /UserManagement/rest/UserService/users HTTP/1.1" 500 3761
+127.0.0.1 - - [27/Jan/2017:16:15:25 -0500] "GET / HTTP/1.1" 404 988
+0:0:0:0:0:0:0:1 - - [27/Jan/2017:16:15:35 -0500] "GET /UserManagement/rest/UserService/users HTTP/1.1" 200 60
