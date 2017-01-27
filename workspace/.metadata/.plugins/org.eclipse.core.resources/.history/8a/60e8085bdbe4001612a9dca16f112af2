@@ -17,7 +17,7 @@ public class UserDao {
 	      try {
 	         File file = new File("Users.dat");
 	         if (!file.exists()) {
-	            User user = new User(1, "Sree Anne", "Architect");
+	            User user = new User(1, "Sree", "Architect");
 	            userList = new ArrayList<User>();
 	            userList.add(user);
 	            saveUserList(userList);		
