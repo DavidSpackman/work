@@ -8,5 +8,6 @@
 	</list>
 	<list key="J2EE_EXPORT_JST_WEB">
 		<item value="C:\app\tomcatOpen\webapps\UserManagement.war"/>
+		<item value="C:\app\tomcatOpen\webapps\UserManagement2.war"/>
 	</list>
 </section>

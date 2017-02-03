@@ -2,13 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="com"/>
 		</list>
 		<list key="name">
-			<item value="Maven"/>
 		</list>
 		<list key="artifactId">
-			<item value="mvproject"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -47,6 +44,9 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\app"/>
+			<item value="C:\app\Github\work\workspace\UserManagement3"/>
+			<item value="C:\app\Github\work\workspace\UserManagement2"/>
 			<item value="C:\app\Github\work\workspace\REST"/>
 		</list>
 		<list key="projectNameTemplate">
