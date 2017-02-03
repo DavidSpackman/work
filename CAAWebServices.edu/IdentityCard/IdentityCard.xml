@@ -1,0 +1,9 @@
+<?xml version='1.0' ?>
+<!--==========-  End added 20091217  ==================- 
+COPYRIGHT DASSAULT SYSTEMES 2006-->
+
+<eduFramework xmlns = "http://www.3ds.ic" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://www.3ds.ic ICModel.xsd">
+  <!--====-  20091217 automatically added   ==============
+====- not initially targeted on MacOS ==============-->
+  <built value = "false" osConstraint = "Darwin"/>
+</eduFramework>

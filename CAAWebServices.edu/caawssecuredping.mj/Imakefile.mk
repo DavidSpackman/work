@@ -1,0 +1,7 @@
+# COPYRIGHT DASSAULT SYSTEMES 2006
+
+BUILT_OBJECT_TYPE=CSHARP EXE
+
+LINK_WITH=
+LOCAL_CSHARP_FLAGS =  /r:System.Runtime.Serialization.dll /r:System.ServiceModel.dll 
+
