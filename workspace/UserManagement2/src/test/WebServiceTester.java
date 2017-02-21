@@ -30,25 +30,33 @@ public class WebServiceTester  {
       //test get all users Web Service Method
       tester.testGetAllUsers();
      
-     //test get user Web Service Method 
+     /*//test get user Web Service Method 
       tester.testGetUser();
       //test update user Web Service Method
       tester.testUpdateUser();
       //test add user Web Service Method
       tester.testAddUser();
       //test delete user Web Service Method
-      tester.testDeleteUser();
+      tester.testDeleteUser();*/
    }
    //Test: Get list of all users
    //Test: Check if list is not empty
    private void testGetAllUsers(){
       GenericType<List<User>> list = new GenericType<List<User>>() {};
       List<User> users = client.target(REST_SERVICE_URL).request(MediaType.APPLICATION_XML).get(list);
+      
+      for(int i=0;i<users.size();i++){
+    	  User u = (User)users.get(i);
+    	  System.out.println(" ----->"+u.getId());
+    	  System.out.println(" ----->"+u.getName());
+    	  
+      }
+      
       String result = PASS;
       if(users.isEmpty()){
          result = FAIL;
       }
-      System.out.println("Test case name: testGetAllUsers, Result: " + result );
+      System.out.println("Test case name: testGetAllUsers, Result: " + result + "Users------>" + users);
    }
    
    //Test: Get User of id 1

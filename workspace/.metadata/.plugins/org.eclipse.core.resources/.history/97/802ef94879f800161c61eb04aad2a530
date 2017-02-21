@@ -1,0 +1,20 @@
+package hondapassport;
+
+import matrix.db.Context;
+
+public class CASContextGenerator {
+
+	public static void main(String[] args) throws Exception{
+	
+		String host ="";
+		String user ="";
+		String password="";
+		String role ="";
+		String vault="";
+		boolean use3DPassport=true;
+		
+		Context context = Util.connect(host, user, password, role, vault, use3DPassport);
+
+	}
+
+}

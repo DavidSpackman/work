@@ -1,0 +1,18 @@
+package hondapassport;
+
+public class CASContextGenerator {
+
+	public static void main(String[] args) throws Exception{
+	
+		String host ="";
+		String user ="";
+		String password="";
+		String role ="";
+		String vault="";
+		String use3DPassport="";
+		
+		Context context = Util.connect(host, user, password, role, vault, use3DPassport);
+
+	}
+
+}

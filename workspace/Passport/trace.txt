@@ -1,0 +1,62 @@
+
+Connect Error: no protocol: localhost/servlet/MatrixXMLServlet
+
+java.net.MalformedURLException: no protocol: localhost/servlet/MatrixXMLServlet
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at hondapassport.Passport.getHttpConnection(Passport.java:98)
+	at hondapassport.Passport.getTicket(Passport.java:42)
+	at hondapassport.Util.connect(Util.java:20)
+	at hondapassport.CASContextGenerator.main(CASContextGenerator.java:16)
+
+Connect Error: no protocol: localhost/servlet/MatrixXMLServlet
+
+java.net.MalformedURLException: no protocol: localhost/servlet/MatrixXMLServlet
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at hondapassport.Passport.getHttpConnection(Passport.java:98)
+	at hondapassport.Passport.getTicket(Passport.java:42)
+	at hondapassport.Util.connect(Util.java:20)
+	at hondapassport.CASContextGenerator.main(CASContextGenerator.java:16)
+
+Connect Error: Required CAS Redirect not found
+
+java.lang.Exception: Required CAS Redirect not found
+	at hondapassport.Passport.getTicket(Passport.java:47)
+	at hondapassport.Util.connect(Util.java:20)
+	at hondapassport.CASContextGenerator.main(CASContextGenerator.java:16)
+
+Connect Error: The credentials you provided cannot be determined to be authentic
+
+java.lang.Exception: The credentials you provided cannot be determined to be authentic
+	at hondapassport.Passport.getTicket(Passport.java:88)
+	at hondapassport.Util.connect(Util.java:20)
+	at hondapassport.CASContextGenerator.main(CASContextGenerator.java:16)
+
+Connect Error: The credentials you provided cannot be determined to be authentic
+
+java.lang.Exception: The credentials you provided cannot be determined to be authentic
+	at hondapassport.Passport.getTicket(Passport.java:88)
+	at hondapassport.Util.connect(Util.java:20)
+	at hondapassport.CASContextGenerator.main(CASContextGenerator.java:16)
+
+Connect Error: The system reported the following error: com.matrixone.jdl.HttpException: Bad Set-Cookie header: JSESSIONID=9A565BC6960626B989834505B06A7638; Path=/3dpassport/; Secure; HttpOnly, afs=d2bdc9f0-cb4b-4cbc-82cd-01f5db22d13e; Expires=Thu, 31-Dec-2026 21:12:24 GMT; Path=/; Secure; HttpOnly Header targets a different path, found "/3dpassport/" for "/3dspace//servlet/MatrixXMLServlet"
+
+It seems that you are trying to connect using 3DPassport.
+Make sure you use the "-passport" option.
+
+com.matrixone.jdl.HttpException: Bad Set-Cookie header: JSESSIONID=9A565BC6960626B989834505B06A7638; Path=/3dpassport/; Secure; HttpOnly, afs=d2bdc9f0-cb4b-4cbc-82cd-01f5db22d13e; Expires=Thu, 31-Dec-2026 21:12:24 GMT; Path=/; Secure; HttpOnly Header targets a different path, found "/3dpassport/" for "/3dspace//servlet/MatrixXMLServlet"
+
+	at matrix.db.Context.connect(Context.java:1780)
+	at matrix.db.Context.connect(Context.java:1662)
+	at hondapassport.Util.connect(Util.java:29)
+	at hondapassport.CASContextGenerator.main(CASContextGenerator.java:16)
+
+Connect Error: The credentials you provided cannot be determined to be authentic
+
+java.lang.Exception: The credentials you provided cannot be determined to be authentic
+	at hondapassport.Passport.getTicket(Passport.java:88)
+	at hondapassport.Util.connect(Util.java:20)
+	at hondapassport.CASContextGenerator.main(CASContextGenerator.java:16)
