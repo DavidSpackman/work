@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="C:\app\Jersey1.9" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="C:\app\DassaultSystemes\R2016x\3DSpace\server\win_b64\code\tomcat\current\webapps\3dspace\WEB-INF\lib" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="RefactoringWizard.preview">
 		<item value="600" key="width"/>
 		<item value="400" key="height"/>
