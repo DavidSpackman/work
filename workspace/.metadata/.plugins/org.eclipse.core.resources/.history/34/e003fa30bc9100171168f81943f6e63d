@@ -1,0 +1,138 @@
+package test;
+
+public class DSIS3DSpaceRESTClientMain {
+
+	 /**
+     * Name of the application.
+     */
+    public static final String APPLICATION_NAME = "DSIS3DSpaceRESTClient";
+
+    private static final String SPACE = " ";
+    private static final String EMPTY_STRING = "";
+
+    private static final String OPT_URL_PASSPORT = "https://passport.sa.com/3dpassport/";
+    private static final String OPT_URL_SERVICE = "https://3dspace.sa.com/3dspace/resources/HondaRestServiceModeler/HondaFindObjects?type=Person";
+    private static final String OPT_USERNAME = "sanne_admin";
+    private static final String OPT_PASSWORD = "Passport1";
+    private static final String OPT_SECURITYCONTEXT = "VPLMAdmin.DS.Default";
+
+    public static void main(String[] args) {
+
+        String urlPassport = EMPTY_STRING;
+        boolean gotUrlPassport = false;
+
+        String urlService = EMPTY_STRING;
+        boolean gotUrlService = false;
+
+        String username = EMPTY_STRING;
+        boolean gotUsername = false;
+
+        String password = EMPTY_STRING;
+        boolean gotPassword = false;
+
+        String securityContext = EMPTY_STRING;
+        boolean gotSecurityContext = false;
+
+        if (args.length == 0) {
+        	System.out.println(" ----->");
+            printUsage();
+            System.exit(1);
+        }
+
+        for(int i=0 ; i < args.length ; i++) {
+
+            if(args[i].equalsIgnoreCase(OPT_URL_PASSPORT)) {
+
+                urlPassport = args[++i];
+                gotUrlPassport = true;
+
+            }
+            else if(args[i].equalsIgnoreCase(OPT_URL_SERVICE)) {
+
+                urlService = args[++i];
+                gotUrlService = true;
+
+            }
+            else if(args[i].equalsIgnoreCase(OPT_USERNAME)) {
+
+                username = args[++i];
+                gotUsername = true;
+
+            }
+            else if(args[i].equalsIgnoreCase(OPT_PASSWORD)) {
+
+                password = args[++i];
+                gotPassword = true;
+
+            }
+            else if(args[i].equalsIgnoreCase(OPT_SECURITYCONTEXT)) {
+
+                securityContext = args[++i];
+                gotSecurityContext = true;
+
+            }
+
+        }
+
+        if (gotUrlPassport && gotUrlService && gotUsername && gotPassword && gotSecurityContext) {
+
+            System.out.println("3DPassort URL : " + urlPassport);
+            System.out.println("Service URL : " + urlService);
+            System.out.println("Username : " + username);
+            System.out.println("Password : " + password);
+            System.out.println("Security Context : " + securityContext);
+
+            DSIS3DSpaceRESTClient client = new DSIS3DSpaceRESTClient();
+
+            client.setUrlPassport(urlPassport);
+            client.setUrlService(urlService);
+            client.setUsername(username);
+            client.setPassword(password);
+            client.setSecurityContext(securityContext);
+
+            // call the service
+            try {
+
+                client.consume();
+                System.out.println();
+                System.out.println("HTTP Response Code : " + client.getResponseCode());
+                System.out.println("Last Redirect URL : " + client.getLastRedirectURL());
+                System.out.println("Content Type : " + client.getContentType());
+                System.out.println("Content : " + new String(client.getContent()));
+                System.out.println();
+
+
+            } catch (Exception e) {
+
+                e.printStackTrace();;
+                printUsage();
+                System.exit(1);
+
+            }
+
+        } else {
+
+            printUsage();
+            System.exit(1);
+
+        }
+
+    }
+
+    /**
+     * Prints usage information for this application.
+     */
+    public static void printUsage() {
+
+        System.out.println(
+            APPLICATION_NAME + SPACE +
+            "-urlPassport URL_PASSPORT" + SPACE +
+            "-urlService URL_SERVICE" + SPACE +
+            "-username USERNAME" + SPACE +
+            "-password PASSWORD" + SPACE +
+            "-securityContext SECURITY_CONTEXT"
+        );
+
+    }
+
+}

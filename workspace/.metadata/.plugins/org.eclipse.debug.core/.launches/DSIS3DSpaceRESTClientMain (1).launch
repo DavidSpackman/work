@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/SimREST/src/test/DSIS3DSpaceRESTClientMain.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="test.DSIS3DSpaceRESTClientMain"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-urlPassport https://passport.sa.com/3dpassport -urlService https://3dspace.sa.com/3dspace/resources/HondaRestServiceModeler/HondaFindObjects?type=Person -username sanne_admin -password Passport1 -securityContext VPLMAdmin.DS.Default"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="SimREST"/>
+</launchConfiguration>

@@ -1,0 +1,13 @@
+package com.sree.restservices;
+
+import com.dassault_systemes.platform.restServices.ModelerBase;
+import javax.ws.rs.ApplicationPath;
+
+@ApplicationPath("/resources/DSISREQRestServiceModeler")
+public class DSISREQRestServiceModeler extends ModelerBase
+{
+  public Class<?>[] getServices()
+  {
+    return new Class[] { DSISFindObjects.class };
+  }
+}

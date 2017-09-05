@@ -27,4 +27,9 @@
 <fullyQualifiedTypeName name="user.User"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="matrix.db.Context"/>
+<fullyQualifiedTypeName name="com.simulia.services.connect.rest.server.services.Simulation"/>
+<fullyQualifiedTypeName name="com.matrixone.apps.domain.DomainObject"/>
+<fullyQualifiedTypeName name="com.dassault_systemes.i3dx.appsmodel.model.Session"/>
+<fullyQualifiedTypeName name="com.simulia.services.connect.rest.server.services.Session"/>
+<fullyQualifiedTypeName name="restutil.DSIS3DSpaceRESTClient"/>
 </qualifiedTypeNameHistroy>

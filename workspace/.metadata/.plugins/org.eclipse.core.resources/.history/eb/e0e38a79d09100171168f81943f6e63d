@@ -1,0 +1,54 @@
+package test;
+
+import restutil.DSIS3DSpaceRESTClient;
+
+public class RestClient {
+
+	public static void main(String[] args) {
+		
+		String urlPassport = "https://passport.sa.com/3dpassport";
+		
+		//this is for find objects service
+		//String urlService = "https://3dspace.sa.com/3dspace/resources/HondaRestServiceModeler/HondaFindObjects?type=Person";
+		
+		//this is for Hello service which prints user name
+		//String urlService = "https://3dspace.sa.com/3dspace/resources/hello/hello?username=sanne_admin";
+		
+		//this is for Hello service which prints user name
+		//String urlService = "https://3dspace.sa.com/3dspace/resources/hello/hello?username=sanne_admin";
+				
+		
+		String username = "sanne_admin";
+		String password = "Passport1";
+		String securityContext = "VPLMAdmin.DS.Default";
+	
+		
+		DSIS3DSpaceRESTClient client = new DSIS3DSpaceRESTClient();
+
+        client.setUrlPassport(urlPassport);
+        client.setUrlService(urlService);
+        client.setUsername(username);
+        client.setPassword(password);
+        client.setSecurityContext(securityContext);
+		
+        try {
+
+            client.consume();
+            System.out.println();
+            System.out.println("HTTP Response Code : " + client.getResponseCode());
+            System.out.println("Last Redirect URL : " + client.getLastRedirectURL());
+            System.out.println("Content Type : " + client.getContentType());
+            System.out.println("Content : " + new String(client.getContent()));
+            System.out.println();
+            
+        } catch (Exception e) {
+
+            e.printStackTrace();;
+            System.exit(1);
+
+        }
+	    
+
+	}
+
+}

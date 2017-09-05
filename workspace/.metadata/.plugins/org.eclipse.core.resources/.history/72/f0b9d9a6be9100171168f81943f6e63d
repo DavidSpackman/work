@@ -1,0 +1,29 @@
+package test;
+
+public class RestClient {
+
+	public static final String APPLICATION_NAME = "DSIS3DSpaceRESTClient";
+
+	public static void main(String[] args) {
+		
+		String urlPassport = "https://passport.sa.com/3dpassport";
+		String urlService = "https://3dspace.sa.com/3dspace/resources/HondaRestServiceModeler/HondaFindObjects?type=Person";
+		String username = "sanne_admin";
+		String password = "Passport1";
+		String securityContext = "";
+		
+		
+		
+		DSIS3DSpaceRESTClient client = new DSIS3DSpaceRESTClient();
+
+        client.setUrlPassport(urlPassport);
+        client.setUrlService(urlService);
+        client.setUsername(username);
+        client.setPassword(password);
+        client.setSecurityContext(securityContext);
+		
+	    
+
+	}
+
+}

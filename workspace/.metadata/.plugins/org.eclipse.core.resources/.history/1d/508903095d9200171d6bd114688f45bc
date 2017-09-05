@@ -1,0 +1,345 @@
+package restutil;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.net.URL;
+import java.net.URLEncoder;
+
+import javax.net.ssl.HttpsURLConnection;
+
+public class DSIS3DSpaceRESTClient {
+
+    /**
+     * Encoding used for URLs.
+     */
+    public static final String ENCODING = "UTF-8";
+
+    public static final String HTTP_GET_METHOD = "GET";
+    public static final String HTTP_DELETE_METHOD = "DELETE";
+    public static final String HTTP_OPTIONS_METHOD = "OPTIONS";
+    public static final String HTTP_POST_METHOD = "POST";
+    public static final String HTTP_PUT_METHOD = "PUT";
+
+    private static final String EMPTY_STRING = "";
+    private static final String HEADER_NAME_ACCEPT = "Accept";
+    private static final String HEADER_NAME_CONTENT_TYPE = "Content-Type";
+    private static final String HEADER_NAME_CONTENT_LENGTH = "Content-Length";
+    private static final String HEADER_NAME_SECURITYCONTEXT = "SecurityContext";
+    private static final String CONTENT_TYPE_URLENCODED = "application/x-www-form-urlencoded";
+    private static final String ACCEPT_JSON = "application/json";
+
+    private String _urlPassport;
+    private String _urlService;
+    private String _username;
+    private StringBuilder _password;
+    private String _securityContext;
+    private URL _lastRedirectURL;
+    private String _contentType;
+    private int _responseCode;
+    private byte[] _content;
+
+    /**
+     * Creates a new instance of this class.
+     */
+    public DSIS3DSpaceRESTClient() {
+
+        // initialize the Cookie Handler
+        CookieManager cookieManager = new CookieManager();
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+        CookieHandler.setDefault(cookieManager);
+
+        _urlPassport = EMPTY_STRING;
+        _urlService = EMPTY_STRING;
+        _username = EMPTY_STRING;
+        _password = new StringBuilder(EMPTY_STRING);;
+        _securityContext = EMPTY_STRING;
+        _lastRedirectURL = null;
+        _contentType = EMPTY_STRING;
+        _responseCode = 0;
+        _content = new byte[0];
+
+    }
+
+    /**
+     * Gets the 3DPassport server URL
+     * 
+     * @return the 3DPassport server URL
+     */
+    public String getUrlPassport() {
+        return _urlPassport;
+    }
+
+    /**
+     * Sets the 3DPassport server URL
+     * 
+     * @param urlPassport the 3DPassport server URL
+     */
+    public void setUrlPassport(String urlPassport) {
+        _urlPassport = urlPassport;
+    }
+
+    /**
+     * Gets the URL of the target Service
+     * 
+     * @return the URL of the target Service
+     */
+    public String getUrlService() {
+        return _urlService;
+    }
+
+    /**
+     * Gets the URL of the target Service
+     * 
+     * @param urlService the URL of the target Service
+     */
+    public void setUrlService(String urlService) {
+        _urlService = urlService;
+    }
+
+    /**
+     * Gets the username required to execute the target Service
+     * 
+     * @return the username required to execute the target Service
+     */
+    public String getUsername() {
+        return _username;
+    }
+
+    /**
+     * Sets the username required to execute the target Service
+     * 
+     * @param username the required to execute the target Service
+     */
+    public void setUsername(String username) {
+        _username = username;
+    }
+
+    /**
+     * Gets the password required to execute the target Service
+     * 
+     * @return the password required to execute the target Service
+     */
+    public String getPassword() {
+        return _password.toString();
+    }
+
+    /**
+     * Sets the password required to execute the target Service
+     * 
+     * @param password the password required to execute the target Service
+     */
+    public void setPassword(String password) {
+        _password = new StringBuilder(password);
+    }
+
+    /**
+     * Sets the Security Context required to execute the target Service
+     * 
+     * @return the securityContext required to execute the target Service
+     */
+    public String getSecurityContext() {
+        return _securityContext;
+    }
+
+    /**
+     * Sets the Security Context required to execute the target Service
+     * 
+     * @param securityContext the Security Context required to execute the target Service
+     */
+    public void setSecurityContext(String securityContext) {
+        _securityContext = securityContext;
+    }
+
+    /**
+     * The last redirect URL for the request
+     * 
+     * @return the last redirect URL for the request
+     */
+    public URL getLastRedirectURL() {
+        return _lastRedirectURL;
+    }
+
+    /**
+     * Get the content type of the URL response.
+     * 
+     * @return the content type of the URL response. 
+     */
+    public String getContentType() {
+        return _contentType;
+    }
+
+    /**
+     * Get the HTTP response code generated by the request
+     * 
+     * @return the responseCode the HTTP response code generated by the request
+     */
+    public int getResponseCode() {
+        return _responseCode;
+    }
+
+    /**
+     * Get the result content of the request. 
+     * 
+     * @return the result content of the request. 
+     */
+    public byte[] getContent() {
+        return _content;
+    }
+
+    public byte[] loadGETUrl(String url) throws Exception {
+        return loadUrl(new URL(url), HTTP_GET_METHOD, null, null);
+    }
+
+    public byte[] loadOPTIONSUrl(String url) throws Exception {
+        return loadUrl(new URL(url), HTTP_OPTIONS_METHOD, null, null);
+    }
+
+    public byte[] loadPUTUrl(String url, String content_type, byte[] putData) throws Exception {
+        return loadUrl(new URL(url), HTTP_PUT_METHOD, content_type, putData);
+    }
+
+    public byte[] loadPOSTUrl(String url, String content_type, byte[] postData) throws Exception {
+        return loadUrl(new URL(url), HTTP_POST_METHOD, content_type, postData);
+    }
+
+    public byte[] loadDELETEUrl(String url, String content_type, byte[] deleteData) throws Exception {
+        return loadUrl(new URL(url), HTTP_DELETE_METHOD, content_type, deleteData);
+    }
+
+    public void consume() throws Exception {
+
+        //----------------------------------------------------------------------
+        //
+        // Step 1: Get a 3DPassport Login Ticket
+        //
+
+        // build the request URL
+        String requestURL = _urlPassport + "/login?action=get_auth_params&service=" + URLEncoder.encode(_urlService, ENCODING);
+        
+        System.out.println(" ---requestURL------------->"+requestURL);
+
+        // get the login ticket
+        _content = loadGETUrl(requestURL);
+        String content = new String(_content);
+        String loginTicket = content.substring(content.indexOf("lt") + 5);
+        loginTicket = loginTicket.substring(0, loginTicket.indexOf("\""));
+        
+        System.out.println(" ---loginTicket------------->"+loginTicket);
+
+        //----------------------------------------------------------------------
+        //
+        // Step 2: Consume the target Service
+        //
+
+        // build the post data for authentication
+        String postDataString = "lt=" + loginTicket + "&username=" + URLEncoder.encode(_username, ENCODING) + "&password=" + URLEncoder.encode(_password.toString(), ENCODING);
+        System.out.println(" ---postDataString------------->"+postDataString);
+
+        // build the request URL
+        requestURL = _urlPassport + "/login?service=" + URLEncoder.encode(_urlService, ENCODING);
+        System.out.println(" ---requestURL----2--------->"+requestURL);
+
+        // get the content
+        _content = loadPOSTUrl(requestURL, CONTENT_TYPE_URLENCODED, postDataString.getBytes());
+        System.out.println(" ---_content------------->"+_content);
+
+    }
+
+    /*
+     * 
+     */
+    private byte[] loadUrl(URL url, String method, String contentType, byte[] methodData) throws Exception {
+    	
+    	System.out.println(" ---inside loadUrl method------------->");
+
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+
+        HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+        connection.setInstanceFollowRedirects(true);
+        connection.setRequestMethod(method);
+
+        // set the Accept type
+        connection.setRequestProperty(HEADER_NAME_ACCEPT, ACCEPT_JSON);
+
+        // set the Security Context
+        if(_securityContext != null) {
+            connection.setRequestProperty(HEADER_NAME_SECURITYCONTEXT, _securityContext);
+        }
+
+        // write the provided data to request
+        if (methodData != null) {
+
+            connection.setDoOutput(true);
+            connection.setRequestProperty(HEADER_NAME_CONTENT_TYPE, contentType);
+            connection.setRequestProperty(HEADER_NAME_CONTENT_LENGTH, Integer.toString(methodData.length));                
+
+            outputStream = connection.getOutputStream();
+            outputStream.write(methodData);
+            outputStream.flush();
+            outputStream.close();
+
+        }
+
+        // server response codes
+        //
+        //   200 OK
+        //        Standard response for successful HTTP requests.
+        //        The actual response will depend on the request method used.
+        //        In a GET request, the response will contain an entity corresponding
+        //        to the requested resource. In a POST request, the response will contain
+        //        an entity describing or containing the result of the action.
+        //
+        //   201 Created
+        //        The request has been fulfilled, resulting in the creation of a new resource.
+        //
+        //   204 No Content
+        //        The server successfully processed the request and is not returning any content.
+        //
+
+        // get the response code
+        _responseCode = connection.getResponseCode();
+        if (_responseCode != 200 && _responseCode != 201 && _responseCode != 204 ) {
+            inputStream = connection.getErrorStream();
+        }
+        else {
+            inputStream = connection.getInputStream();
+        }
+
+        // get the content
+        byte[] contentByteArray = new byte[0x10000];
+        if (inputStream != null) {
+
+            int read = 0;
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            while ( ( read = inputStream.read(contentByteArray) ) >= 0 ) {
+                if (read == 0) {
+                    break;
+                }
+                byteArrayOutputStream.write(contentByteArray, 0, read);
+            }
+            contentByteArray = byteArrayOutputStream.toByteArray();
+            byteArrayOutputStream.close();
+
+        }
+
+        // get the content type
+        _contentType = connection.getHeaderField(HEADER_NAME_CONTENT_TYPE);
+
+        // save the last redirect
+        if(!connection.getURL().toString().equals(url.toString()) ){
+            _lastRedirectURL = connection.getURL();
+        }
+
+        // close the connection
+        connection.disconnect();
+
+        return contentByteArray;
+
+    }
+
+}

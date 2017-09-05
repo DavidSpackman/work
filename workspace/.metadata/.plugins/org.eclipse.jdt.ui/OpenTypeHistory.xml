@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=16X/C:\/app\/DassaultSystemes\/R2016x\/3DSpace\/server\/win_b64\/code\/tomcat\/current\/webapps\/3dspace\/WEB-INF\/lib\/AppsMngtJavaServices.jar&lt;com.dassault_systemes.i3dx.appsservices(DSPassportServicesSOAP.class[DSPassportServicesSOAP" modifiers="33" timestamp="1480454794427"/>
-<typeInfo handle="=16X/C:\/app\/DassaultSystemes\/R2016x\/3DSpace\/server\/win_b64\/code\/tomcat\/current\/webapps\/3dspace\/WEB-INF\/lib\/RestServicesInfra.jar&lt;com.dassault_systemes.platform.restServices(ModelerBase.class[ModelerBase" modifiers="1057" timestamp="1480454796642"/>
-<typeInfo handle="=16X/C:\/app\/DassaultSystemes\/R2016x\/3DSpace\/server\/win_b64\/code\/tomcat\/current\/webapps\/3dspace\/WEB-INF\/lib\/m1jwsbase.jar&lt;com.matrixone.jsystem.ws.stubs(PingService.class[PingService" modifiers="33" timestamp="1480454796361"/>
+<typeInfo handle="=16X/C:\/app\/DassaultSystemes\/R2016x\/3DSpace\/server\/win_b64\/code\/tomcat\/current\/webapps\/3dspace\/WEB-INF\/lib\/AppsMngtJavaServices.jar&lt;com.dassault_systemes.i3dx.appsservices(DSPassportServicesSOAP.class[DSPassportServicesSOAP" modifiers="1" timestamp="1500572843780"/>
+<typeInfo handle="=16X/C:\/app\/DassaultSystemes\/R2016x\/3DSpace\/server\/win_b64\/code\/tomcat\/current\/webapps\/3dspace\/WEB-INF\/lib\/RestServicesInfra.jar&lt;com.dassault_systemes.platform.restServices(ModelerBase.class[ModelerBase" modifiers="1025" timestamp="1500572847194"/>
+<typeInfo handle="=16X/C:\/app\/DassaultSystemes\/R2016x\/3DSpace\/server\/win_b64\/code\/tomcat\/current\/webapps\/3dspace\/WEB-INF\/lib\/m1jwsbase.jar&lt;com.matrixone.jsystem.ws.stubs(PingService.class[PingService" modifiers="1" timestamp="1500572847116"/>
 </typeInfoHistroy>

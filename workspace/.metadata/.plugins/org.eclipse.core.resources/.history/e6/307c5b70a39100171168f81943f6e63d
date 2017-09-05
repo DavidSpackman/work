@@ -1,0 +1,60 @@
+package com.sree.restservices;
+
+import com.dassault_systemes.platform.restServices.RestService;
+import com.matrixone.apps.domain.DomainObject;
+import com.matrixone.apps.domain.util.FrameworkException;
+import com.matrixone.apps.domain.util.MapList;
+import com.matrixone.json.JSONObject;
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import matrix.util.MatrixException;
+import matrix.util.StringList;
+import org.codehaus.jettison.json.JSONArray;
+
+
+@Path("/HondaFindObjects")
+public class HondaFindObjects extends RestService {
+  @GET
+  @POST
+  public Response getObjects(@javax.ws.rs.core.Context HttpServletRequest request, @QueryParam("type") String typeObj, @QueryParam("selects") String selects) {
+	//Create the resulting JSON
+    JSONObject output = new JSONObject();    
+    matrix.db.Context context = null;
+    try {
+      context = authenticate(request);
+      // Define default resulting informations
+      StringList slObj = new StringList();
+      slObj.add("id");
+      slObj.add("physicalid");
+      slObj.add("type");
+      slObj.add("type.kindof");
+      slObj.add("name");
+      slObj.add("revision");
+      // Define additional resulting informations
+      if ((selects != null) && (!selects.isEmpty())) {
+        slObj.addAll(selects.split(","));
+      }
+      // Execute the query : temp query bus <typeObj> * '' select <slObj>
+      MapList mlObjs = DomainObject.findObjects(context, typeObj, "*", "", slObj);
+      // Serialize the resulting JSON
+      output.put("msg", "OK");
+      output.put("data", new JSONArray(mlObjs));
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+      return Response.status(401).entity("login error").build();
+    }
+    catch (FrameworkException e) {
+      e.printStackTrace();
+    }
+    catch (MatrixException e) {
+      e.printStackTrace();
+    }
+    return Response.status(200).entity(output.toString()).build();
+  }
+}

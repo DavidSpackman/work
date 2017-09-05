@@ -17,8 +17,7 @@ public class HelloRestService  extends RestService {
     @GET
     @Path("/hello")
     @Produces("text/plain")
-    public Response getHelloMessage(@Context HttpServletRequest request,
-        @QueryParam(QUERYPARAM_USERNAME) String username) throws Exception {
+    public Response getHelloMessage(@Context HttpServletRequest request,@QueryParam(QUERYPARAM_USERNAME) String username) throws Exception {
 
         // if no authentication, a 401 error is thrown
         matrix.db.Context context = authenticate(request);
@@ -32,6 +31,13 @@ public class HelloRestService  extends RestService {
 
         return Response.ok(helloMessage).build();
 
+    }
+    
+    @GET
+    @Path("/version")
+    @Produces({"application/ds-json", "application/xml"})
+    public Response version(@javax.ws.rs.core.Context HttpServletRequest request){
+      return Response.status(200).entity("r2015x").build();
     }
 
 }

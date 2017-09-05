@@ -1,0 +1,29 @@
+package test;
+
+public class RestClient {
+
+	public static final String APPLICATION_NAME = "DSIS3DSpaceRESTClient";
+
+	public static void main(String[] args) {
+		
+		String urlPassport = "";
+		String urlService = "";
+		String username = "";
+		String password = "";
+		String securityContext = "";
+		
+		
+		
+		DSIS3DSpaceRESTClient client = new DSIS3DSpaceRESTClient();
+
+        client.setUrlPassport(urlPassport);
+        client.setUrlService(urlService);
+        client.setUsername(username);
+        client.setPassword(password);
+        client.setSecurityContext(securityContext);
+		
+	    
+
+	}
+
+}
